@@ -31,27 +31,27 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            thisWindow = FindWindow(null, "Form1");
+            thisWindow = FindWindow(null, "Login Helper");
 
             
             if(Properties.Settings.Default.HotkeyModifier != 0x001 || Properties.Settings.Default.HotkeyModifier != 0x002 || Properties.Settings.Default.HotkeyModifier != 0x004 || Properties.Settings.Default.HotkeyModifier != 0x008)
             {
-                RegisterHotKey(thisWindow, 1, (uint)fsModifiers.Control, (uint)Keys.F1);
+                RegisterHotKey(thisWindow, 1, (uint)fsModifiers.Control, (uint)Keys.F2);
                 Properties.Settings.Default.HotkeyModifier = (uint)fsModifiers.Control;
-                Properties.Settings.Default.HotKeyLetter = (uint)Keys.F1;
+                Properties.Settings.Default.HotKeyLetter = (uint)Keys.F2;
             }
             else if (Properties.Settings.Default.HotKeyLetter != 0 && Properties.Settings.Default.HotkeyModifier == 0)
             {
-                RegisterHotKey(thisWindow, 1, (uint)fsModifiers.Control, (uint)Keys.F1);
+                RegisterHotKey(thisWindow, 1, (uint)fsModifiers.Control, (uint)Keys.F2);
                 Properties.Settings.Default.HotkeyModifier = (uint)fsModifiers.Control;
-                Properties.Settings.Default.HotKeyLetter = (uint)Keys.F1;
+                Properties.Settings.Default.HotKeyLetter = (uint)Keys.F2;
             }
             else
             {
                 RegisterHotKey(thisWindow, 1, Properties.Settings.Default.HotkeyModifier, Properties.Settings.Default.HotKeyLetter);
             }
 
-            label1.Text = "HotKey: "+ getModifierString((uint)fsModifiers.Control)+ " "+ Keys.F1;
+            label1.Text = "HotKey: "+ getModifierString((uint)fsModifiers.Control)+ " "+ Keys.F2;
         }
 
         public enum fsModifiers
@@ -90,6 +90,7 @@ namespace WindowsFormsApp1
 
         protected override void WndProc(ref Message keyPressed)
         {
+
              if(keyPressed.Msg == 0x0312)
             {
                 System.Threading.Thread.Sleep(2000);
